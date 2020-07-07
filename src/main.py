@@ -8,15 +8,13 @@ __status__ = "Development"
 __version__ = "0.0.1-SNAPSHOT"
 
 # External imports
-# import numpy as np
-# from matplotlib import pyplot as plt
+import numpy as np
+from matplotlib import pyplot as plt
 
-#Project imports
-from entrega01.Functions import Pessoa
-
+# Project imports
+from modules.Functions import Pessoa
 
 if __name__ == "__main__":
-
     pessoa = Pessoa()
     pessoa.set_nome("David")
     print(pessoa.get_nome())
