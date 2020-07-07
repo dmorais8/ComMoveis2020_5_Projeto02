@@ -12,7 +12,8 @@ import numpy as np
 from matplotlib import pyplot as plt
 
 #Project imports
-from src.entrega01.Functions import Pessoa
+from Functions import Pessoa
+
 
 if __name__ == "__main__":
 
