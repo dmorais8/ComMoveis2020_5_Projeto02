@@ -20,8 +20,11 @@ if __name__ == '__main__':
     data_in = np.sign(data_in - .5)
     data_in_matrix = data_in.reshape((25, 4))
 
-    seq16qam = 2 * data_in_matrix[:, 0]+data_in_matrix[:, 1] + 1j * (2 * data_in_matrix[:, 2] + data_in_matrix[:, 3])
-    X = np.append(seq16qam, np.conj(seq16qam))
+    seq16qam = 2 * data_in_matrix[:, 0]+data_in_matrix[:, 1] + i * (2 * data_in_matrix[:, 2] + data_in_matrix[:, 3])
+    seq16qam_conf_reverse = np.conj(seq16qam).tolist()
+    seq16qam_conf_reverse.reverse()
+
+    X = np.append(seq16qam, np.asarray(seq16qam_conf_reverse, dtype=complex))
 
     xn = np.zeros((1, int(N)), dtype=complex)
     for n in range(int(N)):
