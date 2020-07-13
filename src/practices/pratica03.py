@@ -75,6 +75,4 @@ if __name__ == '__main__':
                 else:
                     Z[0, k] = Z[0, k] - i
 
-        error =
-
-    print(len(Y[0]))
+        # error =
