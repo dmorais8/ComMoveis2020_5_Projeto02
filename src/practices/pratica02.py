@@ -6,11 +6,11 @@ import numpy as np
 from matplotlib import pyplot as plt
 
 # CONSTANTS
-n_bits = 100            # Número de bits
-T = 50                  # Tempo de símbolo
-Ts = 2                  # Tempo de símbolo em portadora única
-K = T/Ts                # Número de subportadoras independentes
-N = 2*K                 # N pontos da IDFT
+n_bits = 100    # Número de bits
+T = 50          # Tempo de símbolo
+Ts = 2          # Tempo de símbolo em portadora única
+K = T/Ts        # Número de subportadoras independentes
+N = 2*K         # N pontos da IDFT
 PI = np.pi
 i = 1j
 
@@ -18,7 +18,7 @@ if __name__ == '__main__':
 
     data_in = np.random.rand(1, n_bits)
     data_in = np.sign(data_in - .5)
-    data_in_matrix = data_in.reshape((25, 4))
+    data_in_matrix = data_in.reshape((n_bits//4, 4))
 
     seq16qam = 2 * data_in_matrix[:, 0]+data_in_matrix[:, 1] + i * (2 * data_in_matrix[:, 2] + data_in_matrix[:, 3])
     seq16qam_conf_reverse = np.conj(seq16qam).tolist()

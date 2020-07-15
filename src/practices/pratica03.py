@@ -12,7 +12,7 @@ Ts = 2                  # Tempo de símbolo em portadora única
 K = T/Ts                # Número de subportadoras independentes
 N = 2*K                 # N pontos da IDFT
 PI = np.pi
-sigmas = [0, 0.15, 1]
+sigmas = [0, 0.1, 1]
 i = 1j
 
 if __name__ == '__main__':
@@ -25,9 +25,8 @@ if __name__ == '__main__':
     seq16 = np.conj(seq16qam).tolist()
     seq16.reverse()
 
-    oned_X = np.append(seq16qam, np.asarray(seq16, dtype=complex))
-    X = np.zeros((1, 500), dtype=complex)
-    X[0] = oned_X
+    X = np.zeros((1, int(n_bits/2)), dtype=complex)
+    X[0] = np.append(seq16qam, np.asarray(seq16, dtype=complex))
 
     xn = np.zeros((1, int(N)), dtype=complex)
 
@@ -42,15 +41,14 @@ if __name__ == '__main__':
         noise = np.sqrt(variance) * np.random.randn(1, int(N)) + 1j * np.sqrt(variance) * np.random.randn(1, int(N))
 
         rn = xn + noise
-
         Y = np.zeros((1, int(K)), dtype=complex)
 
         for k in range(0, int(K)):
             for n in range(0, int(N)):
                 Y[0, k] = Y[0, k] + 1/np.sqrt(N)*rn[0, n]*np.exp(-1j*2*np.pi*k*n/N)
-
+        # print(np.shape(Y))
         plt.scatter(Y.real, Y.imag)
-        plt.scatter(oned_X.real, oned_X.imag, color='red', marker='+')
+        plt.scatter(X.real, X.imag, color='red', marker='+')
         plt.title(f'Sinal com ruído de variância {variance}')
         plt.show()
 
@@ -79,5 +77,6 @@ if __name__ == '__main__':
                 else:
                     Z[0, k] = Z[0, k] - i
 
+        print(np.shape(Z))
         error = len(np.nonzero(Z[0, 1:int(K)]-X[0, 1: int(K)])[0])
         print(f'Para variância de , {variance}, houve , {error}, símbolos errados.')
