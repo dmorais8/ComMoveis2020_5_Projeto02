@@ -8,8 +8,8 @@ class QAM16:
     i = 1j
     PI = np.pi
     bit_energy = 1                                   # Energia de bit
-    ebnodb_array = np.arange(0, 15)               # EbNo em dB
-    ebno_linear_array = bit_energy * (10. ** (-ebnodb_array / 10))  # Potência do ruído
+    ebn0db_array = np.arange(0, 15)               # EbNo em dB
+    n0_power_array = bit_energy * (10. ** (-ebn0db_array / 10))  # Potência do ruído
 
     def __init__(self, num_bits, tsimb, tsimb_single_carr):
         self.num_bits = num_bits
@@ -76,10 +76,10 @@ class QAM16:
                 xn[0, n] = xn[0, n] + 1 / np.sqrt(self.N) * X[0, k] * \
                            np.exp(QAM16.i * 2 * QAM16.PI * n * k / self.N)
 
-        for ik in range(len(QAM16.ebnodb_array)):
+        for ik in range(len(QAM16.ebn0db_array)):
 
-            noise = np.sqrt(QAM16.ebno_linear_array[ik]) * np.random.randn(1, int(self.N)) + \
-                    1j * np.sqrt(QAM16.ebno_linear_array[ik]) * np.random.randn(1, int(self.N))
+            noise = np.sqrt(QAM16.n0_power_array[ik]) * np.random.randn(1, int(self.N)) + \
+                    1j * np.sqrt(QAM16.n0_power_array[ik]) * np.random.randn(1, int(self.N))
 
             rn = xn + noise
 
@@ -157,7 +157,7 @@ class QAM16:
         #         axs[i, j].scatter(X.real, X.imag, color='red', marker='+')
         #         axs[i, j].set_title(f'EbN0 {QAM16.ebnodb_array[ebn0]}')
 
-        for ebn0 in range(len(QAM16.ebnodb_array)):
+        for ebn0 in range(len(QAM16.ebn0db_array)):
 
             plt.figure(ebn0)
             plt.scatter(signals['yarrays'][ebn0].real, signals['yarrays'][ebn0].imag, marker='.')
