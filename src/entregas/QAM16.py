@@ -55,14 +55,14 @@ class QAM16:
         xt = signals['x_analog']
         xn = signals['x_discrete']
 
-        plt.plot(np.abs(xn[0]), label="x(t)")
-        markerline, stemlines, baseline = plt.stem(np.abs(xt[0]), use_line_collection=True, linefmt='red',
-                                                   markerfmt='bo', label="x_n")
-        markerline.set_markerfacecolor('none')
-        plt.title('Sinais OFDM')
-        plt.legend(loc="upper left")
-        plt.xlabel('Tempo')
-        plt.show(block=False)
+        # plt.plot(np.abs(xn[0]), label="x(t)")
+        # markerline, stemlines, baseline = plt.stem(np.abs(xt[0]), use_line_collection=True, linefmt='red',
+        #                                            markerfmt='bo', label="x_n")
+        # markerline.set_markerfacecolor('none')
+        # plt.title('Sinais OFDM')
+        # plt.legend(loc="upper left")
+        # plt.xlabel('Tempo')
+        # plt.show(block=False)
 
     def demodulation(self, X):
 
@@ -157,16 +157,28 @@ class QAM16:
         #         axs[i, j].scatter(X.real, X.imag, color='red', marker='+')
         #         axs[i, j].set_title(f'EbN0 {QAM16.ebnodb_array[ebn0]}')
 
+        qam16_ber = []
         for ebn0 in range(len(QAM16.ebn0db_array)):
 
-            plt.figure(ebn0)
-            plt.scatter(signals['yarrays'][ebn0].real, signals['yarrays'][ebn0].imag, marker='.')
-            plt.scatter(X.real, X.imag, color='red', marker='+')
-            plt.title(f'Sinal com Eb/N0 de variância {ebn0}')
+            # plt.figure(ebn0)
+            # plt.scatter(signals['yarrays'][ebn0].real, signals['yarrays'][ebn0].imag, marker='.')
+            # plt.scatter(X.real, X.imag, color='red', marker='+')
+            # plt.title(f'Sinal com Eb/N0 de variância {ebn0}')
 
             Z = signals['zarrays'][ebn0]
             nonzeroarray = np.nonzero(Z[0, 1:int(self.K)] - X[0, 1:int(self.K)])[0]
             sigma = nonzeroarray.sum() / self.num_bits
+            error = len(nonzeroarray)
+            qam16_ber.append(4 * (error / self.num_bits))
             print(f'Para um EbNo de {ebn0}dB, a variancia eh de {sigma:.2f}')
 
-        plt.show(block=True)
+        plt.semilogy(QAM16.ebn0db_array, qam16_ber, 'ro', label='simulated')
+        plt.title('BER vs Eb/N0 for 16-QAM')
+        plt.ylabel('BER')
+        plt.xlabel('Eb/N0')
+        plt.legend(loc='upper right')
+
+        plt.show()
+
+        print(qam16_ber)
+        # plt.show(block=True)
