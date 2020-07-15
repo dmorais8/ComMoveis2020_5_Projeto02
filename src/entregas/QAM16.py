@@ -9,7 +9,7 @@ class QAM16:
     PI = np.pi
     bit_energy = 1                                   # Energia de bit
     ebnodb_array = np.arange(0, 15)               # EbNo em dB
-    ebnodb_array_linear = bit_energy * (10. ** (-ebnodb_array / 10))  # Potência do ruído
+    ebno_linear_array = bit_energy * (10. ** (-ebnodb_array / 10))  # Potência do ruído
 
     def __init__(self, num_bits, tsimb, tsimb_single_carr):
         self.num_bits = num_bits
@@ -78,8 +78,8 @@ class QAM16:
 
         for ik in range(len(QAM16.ebnodb_array)):
 
-            noise = np.sqrt(QAM16.ebnodb_array_linear[ik]) * np.random.randn(1, int(self.N)) + \
-                    1j * np.sqrt(QAM16.ebnodb_array_linear[ik]) * np.random.randn(1, int(self.N))
+            noise = np.sqrt(QAM16.ebno_linear_array[ik]) * np.random.randn(1, int(self.N)) + \
+                    1j * np.sqrt(QAM16.ebno_linear_array[ik]) * np.random.randn(1, int(self.N))
 
             rn = xn + noise
 
