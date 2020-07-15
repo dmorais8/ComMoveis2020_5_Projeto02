@@ -130,6 +130,7 @@ class QAM16:
 
         for ebn0 in range(len(QAM16.ebnodb_array)):
 
+            plt.figure(ebn0)
             plt.scatter(signals['yarrays'][ebn0].real, signals['yarrays'][ebn0].imag, marker='.')
             plt.scatter(X.real, X.imag, color='red', marker='+')
             plt.title(f'Sinal com Eb/N0 de variância {ebn0}')
