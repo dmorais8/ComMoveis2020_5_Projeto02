@@ -128,16 +128,27 @@ class QAM16:
         X = self.gen_constelation_16qam()
         signals = self.demodulation(X)
 
-        for ebn0 in range(len(QAM16.ebnodb_array)):
+        fig, axs = plt.subplots(1, 3)
+        axs[0].scatter(signals['yarrays'][0].real, signals['yarrays'][0].imag, marker='.')
+        axs[0].scatter(X.real, X.imag, color='red', marker='+')
+        axs[0].set_title(f'EbN0 {QAM16.ebnodb_array[0]}')
+        axs[1].scatter(signals['yarrays'][1].real, signals['yarrays'][1].imag, marker='.')
+        axs[1].scatter(X.real, X.imag, color='red', marker='+')
+        axs[1].set_title(f'EbN0 {QAM16.ebnodb_array[1]}')
+        axs[2].scatter(signals['yarrays'][2].real, signals['yarrays'][2].imag, marker='.')
+        axs[2].scatter(X.real, X.imag, color='red', marker='+')
+        axs[2].set_title(f'EbN0 {QAM16.ebnodb_array[2]}')
 
-            plt.figure(ebn0)
-            plt.scatter(signals['yarrays'][ebn0].real, signals['yarrays'][ebn0].imag, marker='.')
-            plt.scatter(X.real, X.imag, color='red', marker='+')
-            plt.title(f'Sinal com Eb/N0 de variância {ebn0}')
-
-            Z = signals['zarrays'][ebn0]
-            nonzeroarray = np.nonzero(Z[0, 1:int(self.K)] - X[0, 1:int(self.K)])[0]
-            sigma = nonzeroarray.sum() / self.num_bits
-            print(f'Para um EbNo de {ebn0}dB, a variancia eh de {sigma:.2f}')
-
+        # for ebn0 in range(len(QAM16.ebnodb_array)):
+        #
+        #     # plt.figure(ebn0)
+        #     # plt.scatter(signals['yarrays'][ebn0].real, signals['yarrays'][ebn0].imag, marker='.')
+        #     # plt.scatter(X.real, X.imag, color='red', marker='+')
+        #     # plt.title(f'Sinal com Eb/N0 de variância {ebn0}')
+        #
+        #     Z = signals['zarrays'][ebn0]
+        #     nonzeroarray = np.nonzero(Z[0, 1:int(self.K)] - X[0, 1:int(self.K)])[0]
+        #     sigma = nonzeroarray.sum() / self.num_bits
+        #     print(f'Para um EbNo de {ebn0}dB, a variancia eh de {sigma:.2f}')
+        #
         plt.show()
