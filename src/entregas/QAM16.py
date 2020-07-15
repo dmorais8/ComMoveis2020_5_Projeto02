@@ -128,26 +128,51 @@ class QAM16:
         X = self.gen_constelation_16qam()
         signals = self.demodulation(X)
 
-        fig, axs = plt.subplots(2, 3)
-        axs[0, 0].scatter(signals['yarrays'][0].real, signals['yarrays'][0].imag, marker='.')
-        axs[0, 0].scatter(X.real, X.imag, color='red', marker='+')
-        axs[0, 0].set_title(f'EbN0 {QAM16.ebnodb_array[0]}')
-        axs[0, 1].scatter(signals['yarrays'][1].real, signals['yarrays'][1].imag, marker='.')
-        axs[0, 1].scatter(X.real, X.imag, color='red', marker='+')
-        axs[0, 1].set_title(f'EbN0 {QAM16.ebnodb_array[1]}')
-        axs[0, 2].scatter(signals['yarrays'][2].real, signals['yarrays'][2].imag, marker='.')
-        axs[0, 2].scatter(X.real, X.imag, color='red', marker='+')
-        axs[0, 2].set_title(f'EbN0 {QAM16.ebnodb_array[2]}')
+        fig, axs = plt.subplots(3, 3)
 
-        axs[1, 0].scatter(signals['yarrays'][3].real, signals['yarrays'][3].imag, marker='.')
-        axs[1, 0].scatter(X.real, X.imag, color='red', marker='+')
-        axs[1, 0].set_title(f'EbN0 {QAM16.ebnodb_array[3]}')
-        axs[1, 1].scatter(signals['yarrays'][4].real, signals['yarrays'][4].imag, marker='.')
-        axs[1, 1].scatter(X.real, X.imag, color='red', marker='+')
-        axs[1, 1].set_title(f'EbN0 {QAM16.ebnodb_array[4]}')
-        axs[1, 2].scatter(signals['yarrays'][5].real, signals['yarrays'][5].imag, marker='.')
-        axs[1, 2].scatter(X.real, X.imag, color='red', marker='+')
-        axs[1, 2].set_title(f'EbN0 {QAM16.ebnodb_array[5]}')
+        for i in range(3):
+            for j in range(3):
+
+                if i == 0 and j == 0:
+                    ebn0 = 0
+                if i == 0 and j == 1:
+                    ebn0 = 1
+                if i == 0 and j == 2:
+                    ebn0 = 2
+                if i == 1 and j == 0:
+                    ebn0 = 3
+                if i == 1 and j == 1:
+                    ebn0 = 4
+                if i == 1 and j == 2:
+                    ebn0 = 5
+                if i == 2 and j == 0:
+                    ebn0 = 6
+                if i == 2 and j == 1:
+                    ebn0 = 7
+                if i == 2 and j == 2:
+                    ebn0 = 8
+
+                axs[i, j].scatter(signals['yarrays'][ebn0].real, signals['yarrays'][ebn0].imag, marker='.')
+                axs[i, j].scatter(X.real, X.imag, color='red', marker='+')
+                axs[i, j].set_title(f'EbN0 {QAM16.ebnodb_array[ebn0]}')
+
+
+            # axs[0, 1].scatter(signals['yarrays'][1].real, signals['yarrays'][1].imag, marker='.')
+            # axs[0, 1].scatter(X.real, X.imag, color='red', marker='+')
+            # axs[0, 1].set_title(f'EbN0 {QAM16.ebnodb_array[1]}')
+            # axs[0, 2].scatter(signals['yarrays'][2].real, signals['yarrays'][2].imag, marker='.')
+            # axs[0, 2].scatter(X.real, X.imag, color='red', marker='+')
+            # axs[0, 2].set_title(f'EbN0 {QAM16.ebnodb_array[2]}')
+            #
+            # axs[1, 0].scatter(signals['yarrays'][3].real, signals['yarrays'][3].imag, marker='.')
+            # axs[1, 0].scatter(X.real, X.imag, color='red', marker='+')
+            # axs[1, 0].set_title(f'EbN0 {QAM16.ebnodb_array[3]}')
+            # axs[1, 1].scatter(signals['yarrays'][4].real, signals['yarrays'][4].imag, marker='.')
+            # axs[1, 1].scatter(X.real, X.imag, color='red', marker='+')
+            # axs[1, 1].set_title(f'EbN0 {QAM16.ebnodb_array[4]}')
+            # axs[1, 2].scatter(signals['yarrays'][5].real, signals['yarrays'][5].imag, marker='.')
+            # axs[1, 2].scatter(X.real, X.imag, color='red', marker='+')
+            # axs[1, 2].set_title(f'EbN0 {QAM16.ebnodb_array[5]}')
 
         # for ebn0 in range(len(QAM16.ebnodb_array)):
         #
