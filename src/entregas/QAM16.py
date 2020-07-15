@@ -169,4 +169,4 @@ class QAM16:
             sigma = nonzeroarray.sum() / self.num_bits
             print(f'Para um EbNo de {ebn0}dB, a variancia eh de {sigma:.2f}')
 
-        plt.show(block=False)
+        plt.show(block=True)
