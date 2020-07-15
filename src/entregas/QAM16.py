@@ -62,7 +62,7 @@ class QAM16:
         plt.title('Sinais OFDM')
         plt.legend(loc="upper left")
         plt.xlabel('Tempo')
-        plt.show()
+        plt.show(block=False)
 
     def demodulation(self, X):
 
@@ -161,4 +161,5 @@ class QAM16:
         #     sigma = nonzeroarray.sum() / self.num_bits
         #     print(f'Para um EbNo de {ebn0}dB, a variancia eh de {sigma:.2f}')
         #
+
         plt.show()
