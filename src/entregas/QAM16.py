@@ -140,25 +140,3 @@ class QAM16:
             print(f'Para um EbNo de {ebn0}dB, a variancia eh de {sigma:.2f}')
 
             plt.show()
-
-
-# if __name__ == '__main__':
-#
-#     Ts = 2
-#
-#     #Modulacao
-#     n_bits_mod = 100  # Número de bits
-#     T_mod = 50  # Tempo de símbolo
-#
-#
-#     mod = QAM16(n_bits_mod, T_mod, Ts)
-#     mod.modulate()
-#
-#     # Demodulacao
-#     n_bits_dmod = 1000  # Número de bits
-#     T_dmod = 500  # Tempo de símbolo
-#
-#     dmod = QAM16(n_bits_dmod, T_dmod, Ts)
-#     dmod.demodulate()
-
-
