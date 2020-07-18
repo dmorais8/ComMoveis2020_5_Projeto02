@@ -7,24 +7,76 @@ __email__ = "moraisdavid8@gmail.com"
 __status__ = "Development"
 __version__ = "0.0.1-SNAPSHOT"
 
+# Builtin imports
+import sys
+import time
+
 # Project imports
 from entregas.QAM16 import QAM16
+
+# PARAMETERS
+modulation_params = {"nbits": 100, "ts": 2, "ts_carrier": 50}
+demodulation_params = {"nbits": 24000, "ts": 2, "ts_carrier": 500}
 
 
 if __name__ == '__main__':
 
-    Ts = 2
+    print('\n_____THIS IS A PROGRAM TO SIMULATE OFDM TRANSMISSION_____')
+    print('SELECT ONE OF THE OPTIONS BELOW TO VERIFY')
+    option = int(input('(1) 16QAM - (2) BPSK: '))
 
-    # Modulacao
-    n_bits_mod = 100  # Número de bits
-    T_mod = 50  # Tempo de símbolo
+    while True:
 
-    mod = QAM16(n_bits_mod, T_mod, Ts)
-    mod.modulate()
+        if option == 1:
 
-    # # Demodulacao
-    n_bits_dmod = 24000  # Número de bits
-    T_dmod = 500  # Tempo de símbolo
+            print('16QAM SIMULATION SELECTED, INITIATING...\n')
+            time.sleep(2)
 
-    dmod = QAM16(n_bits_dmod, T_dmod, Ts)
-    dmod.demodulate()
+            mod = QAM16(modulation_params["nbits"], modulation_params["ts_carrier"], modulation_params["ts"])
+            mod.modulate()
+
+            dmod = QAM16(demodulation_params["nbits"], demodulation_params["ts_carrier"], demodulation_params["ts"])
+            dmod.demodulate()
+
+            rerun = input('\nFINALIZED. DO YOU WANT TO RUN ANOTHER SIMULATION? (y ou n): ')
+
+            if rerun.lower() == 'y':
+
+                print('SELECT ONE OF THE OPTIONS BELOW TO VERIFY')
+                option = int(input('(1) 16QAM - (2) BPSK: '))
+
+            else:
+
+                print("THANKS. TERMINATING THE PROGRAM...")
+                time.sleep(1)
+                sys.exit(0)
+
+        elif option == 2:
+
+            print('\nBPSK SIMULATION SELECTED, INITIATING...')
+            time.sleep(2)
+            print('BUILDING')
+
+            rerun = input('\nFINALIZED. DO YOU WANT TO RUN ANOTHER SIMULATION? (y ou n): ')
+
+            if rerun.lower() == 'y':
+
+                print('SELECT ONE OF THE OPTIONS BELOW TO VERIFY')
+                option = int(input('(1) 16QAM - (2) BPSK: '))
+
+            else:
+
+                print("THANKS. TERMINATING THE PROGRAM...")
+                time.sleep(1)
+                sys.exit(0)
+
+        else:
+
+            print('WRONG OPTION ENTERED. TRY AGAIN')
+            option = int(input('(1) 16QAM - (2) BPSK: '))
+
+            if option not in [1, 2]:
+
+                print('TWO CONSECUTIVE WRONG ENTRIES. TERMINATING...')
+                time.sleep(0.5)
+                sys.exit(1)
