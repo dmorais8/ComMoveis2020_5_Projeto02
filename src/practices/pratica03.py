@@ -42,10 +42,11 @@ if __name__ == '__main__':
 
         rn = xn + noise
         Y = np.zeros((1, int(K)), dtype=complex)
-
+        # Y = xn
         for k in range(0, int(K)):
             for n in range(0, int(N)):
                 Y[0, k] = Y[0, k] + 1/np.sqrt(N)*rn[0, n]*np.exp(-1j*2*np.pi*k*n/N)
+
         # print(np.shape(Y))
         plt.scatter(Y.real, Y.imag)
         plt.scatter(X.real, X.imag, color='red', marker='+')
