@@ -88,7 +88,7 @@ class QAM16:
         for n in range(int(self.N)):
             for k in range(int(self.N)):
                 xn[0, n] = xn[0, n] + 1 / np.sqrt(self.N) * X[0, k] * \
-                           np.exp(QAM16.i * 2 * QAM16.PI * n * k / self.N)
+                           np.exp(i * 2 * PI * n * k / self.N)
 
         for ik in range(len(QAM16.ebn0db_array)):
 
@@ -121,14 +121,14 @@ class QAM16:
 
                 if np.imag(Y[0, k]) > 0:
                     if np.imag(Y[0, k]) > 2:
-                        Z[0, k] = Z[0, k] + (QAM16.i * 3)
+                        Z[0, k] = Z[0, k] + (i * 3)
                     else:
-                        Z[0, k] = Z[0, k] + QAM16.i
+                        Z[0, k] = Z[0, k] + i
                 else:
                     if np.imag(Y[0, k]) < -2:
-                        Z[0, k] = Z[0, k] - (QAM16.i * 3)
+                        Z[0, k] = Z[0, k] - (i * 3)
                     else:
-                        Z[0, k] = Z[0, k] - QAM16.i
+                        Z[0, k] = Z[0, k] - i
 
             zarrays.append(Z)
 
