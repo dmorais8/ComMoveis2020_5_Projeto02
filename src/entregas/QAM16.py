@@ -149,7 +149,7 @@ class QAM16:
             plt.figure(ebn0)
             plt.scatter(signals['yarrays'][ebn0].real, signals['yarrays'][ebn0].imag, marker='.')
             plt.scatter(X.real, X.imag, color='red', marker='+')
-            plt.title(f'Sinal com Eb/N0 de variância {ebn0}')
+            plt.title(f'Sinal com Eb/N0 de {ebn0}dB')
 
             Z = signals['zarrays'][ebn0]
             nonzeroarray = np.nonzero(Z[0, 1:int(self.K)] - X[0, 1:int(self.K)])[0]
