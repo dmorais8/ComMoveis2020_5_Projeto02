@@ -3,6 +3,9 @@ from numpy.fft import fft, ifft
 import matplotlib.pyplot as plt
 from scipy.special import erfc
 
+i = 1j
+PI = np.pi
+
 
 def theoretical_ber_16qam():
 
@@ -14,8 +17,6 @@ def theoretical_ber_16qam():
 
 class QAM16:
 
-    i = 1j
-    PI = np.pi
     bit_energy = 1                                   # Energia de bit
     ebn0db_array = np.arange(0, 15)               # EbNo em dB
     ebn0_linear_array = 10. ** (ebn0db_array / 10)       # ebn0db_array em escala linear
@@ -36,7 +37,7 @@ class QAM16:
         data_in = np.sign(data_in - .5)
         data_in_matrix = data_in.reshape((self.num_bits // 4, 4))
 
-        seq16qam = 2 * data_in_matrix[:, 0] + data_in_matrix[:, 1] + QAM16.i * (2 * data_in_matrix[:, 2] +
+        seq16qam = 2 * data_in_matrix[:, 0] + data_in_matrix[:, 1] + i * (2 * data_in_matrix[:, 2] +
                                                                                 data_in_matrix[:, 3])
         seq16 = np.conj(seq16qam).tolist()
         seq16.reverse()
@@ -46,15 +47,16 @@ class QAM16:
 
         return X
 
-    def modulation(self, X):
+    @staticmethod
+    def gen_signals(X, N, tsimb):
 
-        xn = np.zeros((1, int(self.N)), dtype=complex)
-        for n in range(int(self.N)):
-            for k in range(int(self.N)):
-                xn[0, n] = xn[0, n] + 1 / np.sqrt(self.N) * X[0, k] * np.exp(QAM16.i * 2 * QAM16.PI * n * k / self.N)
+        xn = np.zeros((1, int(N)), dtype=complex)
+        for n in range(int(N)):
+            for k in range(int(N)):
+                xn[0, n] = xn[0, n] + 1 / np.sqrt(N) * X[0, k] * np.exp(i * 2 * PI * n * k / N)
 
-        xt = np.zeros((1, int(self.tsimb + 1)), dtype=complex)
-        for t in range(int(self.tsimb + 1)):
+        xt = np.zeros((1, int(tsimb + 1)), dtype=complex)
+        for t in range(int(tsimb + 1)):
             xt = ifft(xn, axis=0)
 
         return {"x_discrete": xn, "x_analog": xt}
@@ -62,7 +64,7 @@ class QAM16:
     def modulate(self):
 
         X = self.gen_constelation_16qam()
-        signals = self.modulation(X)
+        signals = self.gen_signals(X, self.N, self.tsimb)
 
         xt = signals['x_analog']
         xn = signals['x_discrete']

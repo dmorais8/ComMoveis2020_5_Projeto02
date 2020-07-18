@@ -15,8 +15,8 @@ import time
 from entregas.QAM16 import QAM16
 
 # PARAMETERS
-modulation_params = {"nbits": 100, "ts": 2, "ts_carrier": 50}
-demodulation_params = {"nbits": 24000, "ts": 2, "ts_carrier": 500}
+modulation_params = {"nbits": 100, "ts": 50, "ts_carrier": 2}
+demodulation_params = {"nbits": 24000, "ts": 500, "ts_carrier": 2}
 
 
 if __name__ == '__main__':
@@ -32,10 +32,10 @@ if __name__ == '__main__':
             print('16QAM SIMULATION SELECTED, INITIATING...\n')
             time.sleep(2)
 
-            mod = QAM16(modulation_params["nbits"], modulation_params["ts_carrier"], modulation_params["ts"])
+            mod = QAM16(modulation_params["nbits"], modulation_params["ts"], modulation_params["ts_carrier"])
             mod.modulate()
 
-            dmod = QAM16(demodulation_params["nbits"], demodulation_params["ts_carrier"], demodulation_params["ts"])
+            dmod = QAM16(demodulation_params["nbits"], demodulation_params["ts"], demodulation_params["ts_carrier"])
             dmod.demodulate()
 
             rerun = input('\nFINALIZED. DO YOU WANT TO RUN ANOTHER SIMULATION? (y ou n): ')
@@ -55,7 +55,9 @@ if __name__ == '__main__':
 
             print('\nBPSK SIMULATION SELECTED, INITIATING...')
             time.sleep(2)
-            print('BUILDING')
+
+            bpsk_mod = QAM16(modulation_params["nbits"], modulation_params["ts"], modulation_params["ts_carrier"])
+            bpsk_mod.modulate()
 
             rerun = input('\nFINALIZED. DO YOU WANT TO RUN ANOTHER SIMULATION? (y ou n): ')
 

@@ -31,8 +31,9 @@ if __name__ == '__main__':
         for k in range(int(N)):
             xn[0, n] = xn[0, n] + 1 / np.sqrt(N) * X[k] * np.exp(i * 2 * PI * n * k / N)
 
-    xt = np.zeros((1, int(T+1)), dtype=complex)
-    for t in range(int(T+1)):
+    xt = np.zeros((1, int(T)), dtype=complex)
+    # xt = xn
+    for t in range(int(T)):
         for k in range(int(N)):
             xt[0, t] = xt[0, t] + 1 / np.sqrt(N) * X[k] * np.exp(i * 2 * PI * k * t / T)
 
