@@ -151,7 +151,7 @@ class QAM16:
 
             Z = signals['zarrays'][ebn0]
             nonzeroarray = np.nonzero(Z[0, 1:int(self.K)] - X[0, 1:int(self.K)])[0]
-            sigma = sum(nonzeroarray) / self.num_bits
+            sigma = (sum(nonzeroarray) / self.num_bits) ** 2
             error = len(nonzeroarray)
             qam16_ber.append(4 * (error / self.num_bits))
             print(f'Para um EbNo de {ebn0}dB, a variancia eh de {sigma:.2f}')
@@ -160,7 +160,7 @@ class QAM16:
 
         plt.semilogy(QAM16.ebn0db_array, theoretical_ber_16qam(),
                      label='theoretical')
-        plt.semilogy(qam16_ber, 'ro', label='simulated')
+        plt.semilogy(QAM16.ebn0db_array, qam16_ber, 'r.', label='simulated')
         plt.title('BER vs Eb/N0 for 16-QAM')
         plt.ylabel('BER')
         plt.xlabel('Eb/N0')
