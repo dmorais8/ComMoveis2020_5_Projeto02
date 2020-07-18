@@ -69,7 +69,6 @@ class QAM16:
         xt = signals['x_analog']
         xn = signals['x_discrete']
 
-        plt.figure()
         plt.plot(np.abs(xn[0]), label="x(t)")
         markerline, stemlines, baseline = plt.stem(np.abs(xt[0]), use_line_collection=True, linefmt='red',
                                                    markerfmt='bo', label="x_n")
@@ -77,7 +76,7 @@ class QAM16:
         plt.title('Sinais OFDM')
         plt.legend(loc="upper left")
         plt.xlabel('Tempo')
-        plt.show(block=False)
+        plt.show()
 
     def demodulation(self, X):
 
@@ -159,7 +158,7 @@ class QAM16:
             qam16_ber.append(4 * (error / self.num_bits))
             print(f'Para um EbNo de {ebn0}dB, a variancia eh de {sigma:.2f}')
 
-        plt.show(block=False)
+        plt.show()
 
         plt.semilogy(QAM16.ebn0db_array, theoretical_ber_16qam(),
                      label='theoretical')
