@@ -160,6 +160,8 @@ class QAM16:
             print(f'Para um EbNo de {ebn0}dB, a variancia eh de {sigma:.2f}')
 
         plt.show(block=False)
+
+        plt.figure()
         plt.semilogy(QAM16.ebn0db_array, theoretical_ber_16qam(),
                      label='theoretical')
         plt.semilogy(QAM16.ebn0db_array, qam16_ber, 'r-', label='simulated')
