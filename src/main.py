@@ -5,7 +5,7 @@ __credits__ = ["David Morais"]
 __maintainer__ = "David Morais"
 __email__ = "moraisdavid8@gmail.com"
 __status__ = "Stable"
-__version__ = "1.2"
+__version__ = "1.3-SNAPSHOT"
 
 # Builtin imports
 import sys
