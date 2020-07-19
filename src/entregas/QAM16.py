@@ -69,6 +69,7 @@ class QAM16:
         xt = signals['x_analog']
         xn = signals['x_discrete']
 
+        plt.figure()
         plt.plot(np.abs(xn[0]), label="x(t)")
         markerline, stemlines, baseline = plt.stem(np.abs(xt[0]), use_line_collection=True, linefmt='red',
                                                    markerfmt='bo', label="x_n")
