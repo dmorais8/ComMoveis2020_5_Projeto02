@@ -171,5 +171,5 @@ class QAM16:
         plt.xlabel('Eb/N0')
         plt.legend(loc='upper right')
 
-        plt.show()
+        plt.show(block=False)
 
