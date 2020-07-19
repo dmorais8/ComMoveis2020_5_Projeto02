@@ -74,7 +74,7 @@ class QAM16:
         markerline, stemlines, baseline = plt.stem(np.abs(xt[0]), use_line_collection=True, linefmt='red',
                                                    markerfmt='bo', label="x_n")
         markerline.set_markerfacecolor('none')
-        plt.title('Sinais OFDM')
+        plt.title('Sinais OFDM para 16-QAM')
         plt.legend(loc="upper left")
         plt.xlabel('Tempo')
         plt.show(block=False)
@@ -157,7 +157,7 @@ class QAM16:
             sigma = (sum(nonzeroarray) / self.num_bits) ** 2
             error = len(nonzeroarray)
             qam16_ber.append(4 * (error / self.num_bits))
-            print(f'Para um Eb/N0 de {ebn0}dB, a variancia eh de {sigma:.2f}')
+            print(f'Para um Eb/N0 de {ebn0}dB, a variancia eh de {sigma:.5f}')
 
         plt.show(block=False)
 
