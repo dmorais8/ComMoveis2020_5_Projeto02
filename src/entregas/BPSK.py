@@ -11,14 +11,14 @@ PI = np.pi
 
 def theoretical_ber_bpsk():
 
-    return 1 / 2. * erfc(np.sqrt(BPSK.ebn0_linear_array))
+    return 0.5 * erfc(np.sqrt(BPSK.ebn0_linear_array))
 
 
 # noinspection DuplicatedCode
 class BPSK:
 
     bit_energy = 1  # Energia de bit
-    ebn0db_array = np.arange(0, 16)  # EbNo em dB
+    ebn0db_array = np.arange(0, 15)  # EbNo em dB
     ebn0_linear_array = 10. ** (ebn0db_array / 10)  # ebn0db_array em escala linear
     n0_power_array = bit_energy * 10. ** (-ebn0db_array / 10)  # Potência do ruído
     mod_simbols = 2  # Número de simbolos no 16-QAM
@@ -129,7 +129,7 @@ class BPSK:
             sigma = (sum(nonzeroarray) / self.num_bits) ** 2
             error = len(nonzeroarray)
             bpsk_ber.append(error / self.num_bits)
-            print(f'Para um Eb/N0 de {ebn0}dB, a variancia eh de {sigma}')
+            print(f'Para um Eb/N0 de {ebn0}dB, a variancia eh de {sigma:.5f}')
 
         plt.show(block=False)
 
