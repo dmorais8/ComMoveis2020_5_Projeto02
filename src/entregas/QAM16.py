@@ -150,7 +150,7 @@ class QAM16:
             plt.scatter(signals['yarrays'][ebn0].real, signals['yarrays'][ebn0].imag, marker='.')
             plt.scatter(X.real, X.imag, color='red', marker='+')
             plt.title(f'Sinal com Eb/N0 de {ebn0}dB')
-            plt.show(block=False)
+
 
             Z = signals['zarrays'][ebn0]
             nonzeroarray = np.nonzero(Z[0, 1:int(self.K)] - X[0, 1:int(self.K)])[0]
@@ -159,6 +159,7 @@ class QAM16:
             qam16_ber.append(4 * (error / self.num_bits))
             print(f'Para um EbNo de {ebn0}dB, a variancia eh de {sigma:.2f}')
 
+        plt.show(block=False)
         plt.semilogy(QAM16.ebn0db_array, theoretical_ber_16qam(),
                      label='theoretical')
         plt.semilogy(QAM16.ebn0db_array, qam16_ber, 'r-', label='simulated')
