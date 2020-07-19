@@ -4,8 +4,8 @@ __copyright__ = "Copyright 2020, Projeto 02, Comunicacoes Moveis"
 __credits__ = ["David Morais"]
 __maintainer__ = "David Morais"
 __email__ = "moraisdavid8@gmail.com"
-__status__ = "Development"
-__version__ = "1.2-SNAPSHOT"
+__status__ = "Stable"
+__version__ = "1.2"
 
 # Builtin imports
 import sys
