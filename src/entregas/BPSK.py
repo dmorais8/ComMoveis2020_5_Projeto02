@@ -11,8 +11,8 @@ PI = np.pi
 
 def theoretical_ber_bpsk():
 
-    return 2. * (1 - (1 / np.sqrt(BPSK.mod_bits))) * erfc(np.sqrt(3 * BPSK.ebn0_linear_array /
-                                                                  (2 * (BPSK.mod_bits - 1))))
+    return 2. * (1 - (1 / np.sqrt(BPSK.mod_simbols))) * erfc(np.sqrt(3 * BPSK.ebn0_linear_array /
+                                                                     (2 * (BPSK.mod_simbols - 1))))
 
 
 # noinspection DuplicatedCode

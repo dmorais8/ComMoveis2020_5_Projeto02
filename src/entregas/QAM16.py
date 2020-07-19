@@ -76,7 +76,7 @@ class QAM16:
         plt.title('Sinais OFDM')
         plt.legend(loc="upper left")
         plt.xlabel('Tempo')
-        plt.show()
+        plt.show(block=False)
 
     def demodulation(self, X):
 
@@ -150,6 +150,7 @@ class QAM16:
             plt.scatter(signals['yarrays'][ebn0].real, signals['yarrays'][ebn0].imag, marker='.')
             plt.scatter(X.real, X.imag, color='red', marker='+')
             plt.title(f'Sinal com Eb/N0 de {ebn0}dB')
+            plt.show(block=False)
 
             Z = signals['zarrays'][ebn0]
             nonzeroarray = np.nonzero(Z[0, 1:int(self.K)] - X[0, 1:int(self.K)])[0]
@@ -158,14 +159,14 @@ class QAM16:
             qam16_ber.append(4 * (error / self.num_bits))
             print(f'Para um EbNo de {ebn0}dB, a variancia eh de {sigma:.2f}')
 
-        plt.show()
-
         plt.semilogy(QAM16.ebn0db_array, theoretical_ber_16qam(),
                      label='theoretical')
-        plt.semilogy(QAM16.ebn0db_array, qam16_ber, 'r.', label='simulated')
+        plt.semilogy(QAM16.ebn0db_array, qam16_ber, 'r-', label='simulated')
+        plt.grid(color='g', linestyle='-', linewidth=0.1)
         plt.title('BER vs Eb/N0 for 16-QAM')
         plt.ylabel('BER')
         plt.xlabel('Eb/N0')
         plt.legend(loc='upper right')
 
         plt.show()
+
