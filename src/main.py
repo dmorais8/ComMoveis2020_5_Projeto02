@@ -12,6 +12,7 @@ import sys
 import time
 
 # Project imports
+from entregas.BPSK import BPSK
 from entregas.QAM16 import QAM16
 
 # PARAMETERS
@@ -56,8 +57,11 @@ if __name__ == '__main__':
             print('\nBPSK SIMULATION SELECTED, INITIATING...')
             time.sleep(2)
 
-            bpsk_mod = QAM16(modulation_params["nbits"], modulation_params["ts"], modulation_params["ts_carrier"])
+            bpsk_mod = BPSK(modulation_params["nbits"], modulation_params["ts"], modulation_params["ts_carrier"])
             bpsk_mod.modulate()
+
+            bpsk_dmod = BPSK(demodulation_params["nbits"], demodulation_params["ts"], demodulation_params["ts_carrier"])
+            bpsk_dmod.simulate()
 
             rerun = input('\nFINALIZED. DO YOU WANT TO RUN ANOTHER SIMULATION? (y ou n): ')
 

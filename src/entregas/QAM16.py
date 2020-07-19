@@ -150,14 +150,14 @@ class QAM16:
             plt.figure(ebn0)
             plt.scatter(signals['yarrays'][ebn0].real, signals['yarrays'][ebn0].imag, marker='.')
             plt.scatter(X.real, X.imag, color='red', marker='+')
-            plt.title(f'Sinal com Eb/N0 de {ebn0}dB')
+            plt.title(f'Sinal OFDM/16-QAM com Eb/N0 de {ebn0}dB')
 
             Z = signals['zarrays'][ebn0]
             nonzeroarray = np.nonzero(Z[0, 1:int(self.K)] - X[0, 1:int(self.K)])[0]
             sigma = (sum(nonzeroarray) / self.num_bits) ** 2
             error = len(nonzeroarray)
             qam16_ber.append(4 * (error / self.num_bits))
-            print(f'Para um EbNo de {ebn0}dB, a variancia eh de {sigma:.2f}')
+            print(f'Para um Eb/N0 de {ebn0}dB, a variancia eh de {sigma:.2f}')
 
         plt.show(block=False)
 
