@@ -17,14 +17,14 @@ from entregas.QAM16 import QAM16
 
 # PARAMETERS
 modulation_params = {"nbits": 100, "ts": 50, "ts_carrier": 2}
-demodulation_params = {"nbits": 24000, "ts": 500, "ts_carrier": 2}
+demodulation_params = {"nbits": 22000, "ts": 500, "ts_carrier": 2}
 
 
 if __name__ == '__main__':
 
     print('\n_____THIS IS A PROGRAM TO SIMULATE OFDM TRANSMISSION_____')
     print('SELECT ONE OF THE OPTIONS BELOW TO VERIFY')
-    option = int(input('(1) 16QAM - (2) BPSK: '))
+    option = int(input('(1) 16QAM - (2) BPSK - (ANY KEY) QUIT: '))
 
     while True:
 
@@ -39,7 +39,7 @@ if __name__ == '__main__':
             dmod = QAM16(demodulation_params["nbits"], demodulation_params["ts"], demodulation_params["ts_carrier"])
             dmod.demodulate()
 
-            rerun = input('\nFINALIZED. DO YOU WANT TO RUN ANOTHER SIMULATION? (y ou n): ')
+            rerun = input('\nFINALIZED. DO YOU WANT TO RUN ANOTHER SIMULATION? (y or n): ')
 
             if rerun.lower() == 'y':
 
@@ -63,12 +63,12 @@ if __name__ == '__main__':
             bpsk_dmod = BPSK(demodulation_params["nbits"], demodulation_params["ts"], demodulation_params["ts_carrier"])
             bpsk_dmod.simulate()
 
-            rerun = input('\nFINALIZED. DO YOU WANT TO RUN ANOTHER SIMULATION? (y ou n): ')
+            rerun = input('\nFINALIZED. DO YOU WANT TO RUN ANOTHER SIMULATION? (y or n): ')
 
             if rerun.lower() == 'y':
 
                 print('SELECT ONE OF THE OPTIONS BELOW TO VERIFY')
-                option = int(input('(1) 16QAM - (2) BPSK: '))
+                option = int(input('(1) 16QAM - (2) BPSK - (ANY KEY) QUIT: '))
 
             else:
 
